@@ -1,23 +1,23 @@
-import logo from './logo.svg';
 import './App.css';
+import { useDispatch, useSelector } from 'react-redux';
 
 function App() {
+  const count = useSelector((state) => state.count);
+  const dispatch = useDispatch();
+
+  const increase = () => {
+    dispatch({ type: 'INCREMENT' });
+  };
+
+  const decrease = () => {
+    dispatch({ type: 'DECREMENT', payload: { num: 2 } });
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='App'>
+      <strong>{count}</strong>
+      <button onClick={increase}>증가</button>
+      <button onClick={decrease}>감소</button>
     </div>
   );
 }
